@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Player</title>
+    <style>
+        body { background: #000; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; color: white; }
+        iframe { width: 80%; height: 70vh; border: none; border-radius: 10px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        .back-btn { margin-top: 20px; color: #ccc; text-decoration: none; border: 1px solid #444; padding: 10px 20px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <iframe id="videoPlayer" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+
+    <a href="topic-detail.html" class="back-btn">← Back to Course</a>
+
+    <script>
+        // Simple logic to change video based on URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const vid = urlParams.get('vid');
+        if (vid) {
+            document.getElementById('videoPlayer').src = "https://www.youtube.com/embed/" + vid;
+        }
+    </script>
+</body>
+</html>
