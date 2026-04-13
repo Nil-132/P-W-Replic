@@ -1,31 +1,195 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Portal - Subjects</title>
+    <title>Subject Library | Student Portal</title>
     <style>
-        body { font-family: sans-serif; background-color: #f4f7fe; padding: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: auto; }
-        .card { background: white; padding: 20px; border-radius: 10px; border: 1px solid #eee; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: #333; transition: 0.3s; }
-        .card:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .icon { width: 40px; height: 40px; background: #eef2ff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #5a67d8; margin-right: 15px; }
-        .info { flex-grow: 1; }
-        .progress-bar { height: 6px; background: #eee; border-radius: 3px; margin-top: 8px; overflow: hidden; }
-        .progress { height: 100%; background: #48bb78; }
+        :root {
+            --quant: #4299e1;
+            --english: #ed64a6;
+            --reasoning: #667eea;
+            --banking: #ecc94b;
+            --current: #48bb78;
+            --dark: #2d3748;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7fafc;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 { color: var(--dark); margin-bottom: 10px; }
+        .header p { color: #718096; }
+
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Subject Card Design */
+        .subject-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Decorative Background Circle */
+        .subject-card::after {
+            content: "";
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            opacity: 0.1;
+            transition: 0.3s;
+        }
+
+        /* Specific Colors & Icons */
+        .quant { border-top: 5px solid var(--quant); }
+        .quant::after { background: var(--quant); }
+        
+        .english { border-top: 5px solid var(--english); }
+        .english::after { background: var(--english); }
+
+        .reasoning { border-top: 5px solid var(--reasoning); }
+        .reasoning::after { background: var(--reasoning); }
+
+        .banking { border-top: 5px solid var(--banking); }
+        .banking::after { background: var(--banking); }
+
+        .current { border-top: 5px solid var(--current); }
+        .current::after { background: var(--current); }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .subject-card h2 { margin: 0; font-size: 22px; color: var(--dark); }
+        .subject-card p { font-size: 14px; color: #718096; margin: 10px 0 20px 0; }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--dark);
+            border-top: 1px solid #edf2f7;
+            padding-top: 15px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #edf2f7;
+            border-radius: 10px;
+            margin-top: 8px;
+        }
+
+        .progress-fill { height: 100%; border-radius: 10px; }
     </style>
 </head>
 <body>
-    <h2 style="text-align:center;">My Batches</h2>
-    <div class="grid">
-        <a href="chapters.html" class="card">
-            <div class="icon">Re</div>
-            <div class="info">
-                <strong>Reasoning</strong>
-                <div class="progress-bar"><div class="progress" style="width: 19%;"></div></div>
+
+    <div class="header">
+        <h1>Recorded Library</h1>
+        <p>Access all previous lectures and materials organized by subject.</p>
+    </div>
+
+    <div class="subject-grid">
+        
+        <a href="chapters.html?sub=quant" class="subject-card quant">
+            <div class="icon-box" style="background:#ebf8ff; color:var(--quant)">Q</div>
+            <h2>Quantitative Aptitude</h2>
+            <p>Master Mathematics and Data Interpretation.</p>
+            <div class="stats">
+                <span>42 Lectures</span>
+                <span>85% Done</span>
             </div>
-            <span>19% ></span>
+            <div class="progress-bar"><div class="progress-fill" style="width: 85%; background: var(--quant);"></div></div>
         </a>
-        </div>
+
+        <a href="chapters.html?sub=english" class="subject-card english">
+            <div class="icon-box" style="background:#fff5f7; color:var(--english)">E</div>
+            <h2>English Language</h2>
+            <p>Vocabulary, Grammar, and Reading Comprehension.</p>
+            <div class="stats">
+                <span>30 Lectures</span>
+                <span>40% Done</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 40%; background: var(--english);"></div></div>
+        </a>
+
+        <a href="Reasoning/chapters.html" class="subject-card reasoning">
+            <div class="icon-box" style="background:#edf2ff; color:var(--reasoning)">R</div>
+            <h2>Reasoning Ability</h2>
+            <p>Puzzles, Logic, and Analytical Reasoning.</p>
+            <div class="stats">
+                <span>55 Lectures</span>
+                <span>19% Done</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 19%; background: var(--reasoning);"></div></div>
+        </a>
+
+        <a href="chapters.html?sub=banking" class="subject-card banking">
+            <div class="icon-box" style="background:#fffff0; color:var(--banking)">B</div>
+            <h2>Banking Awareness</h2>
+            <p>Financial news and banking history.</p>
+            <div class="stats">
+                <span>20 Lectures</span>
+                <span>10% Done</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 10%; background: var(--banking);"></div></div>
+        </a>
+
+        <a href="chapters.html?sub=current" class="subject-card current">
+            <div class="icon-box" style="background:#f0fff4; color:var(--current)">C</div>
+            <h2>Current Affairs</h2>
+            <p>Daily updates and monthly analysis.</p>
+            <div class="stats">
+                <span>120 Lectures</span>
+                <span>95% Done</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 95%; background: var(--current);"></div></div>
+        </a>
+
+    </div>
+
 </body>
 </html>
